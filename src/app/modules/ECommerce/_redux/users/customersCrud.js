@@ -6,7 +6,7 @@ export const USERS_URL = ABU + "/users";
 
 // CREATE =>  POST: add a new user to the server
 export function createCustomer(user) {
-  return axios.post(USERS_URL, { user });
+  return axios.post(USERS_URL, { ...user });
 }
 
 // READ

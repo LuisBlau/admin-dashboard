@@ -6,7 +6,7 @@ export const CUSTOMERS_URL = ABU + "/users";
 
 // CREATE =>  POST: add a new customer to the server
 export function createCustomer(customer) {
-  return axios.post(CUSTOMERS_URL, { customer });
+  return axios.post(CUSTOMERS_URL, { ...customer });
 }
 
 // READ
@@ -26,7 +26,7 @@ export function findCustomers(queryParams) {
 
 // UPDATE => patch: update the customer on the server
 export function updateCustomer(customer) {
-  return axios.patch(`${CUSTOMERS_URL}/${customer.id}`, { customer });
+  return axios.patch(`${CUSTOMERS_URL}/${customer.id}`, { ...customer });
 }
 
 // UPDATE Status

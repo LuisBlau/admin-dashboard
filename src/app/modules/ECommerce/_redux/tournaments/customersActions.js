@@ -9,37 +9,36 @@ export const fetchCustomers = queryParams => dispatch => {
   // alert('fetchs')
   dispatch(actions.startCall({ callType: callTypes.list }));
   
-  fetch("https://game-engine-backend-api.herokuapp.com/v1/rounds?gameId=635792e04c66d1478c1a2eb4&limit=10&page=0&sortBy=roundId:desc")
-  .then(res => res.json())
-  .then(
-    (result) => {
-      console.log(result)
-      const totalCount = result.totalResults;
-      const entities = result.results;
-//      result = JSON.parse(result)
+//   fetch("https://game-engine-backend-api.herokuapp.com/v1/rounds?gameId=635792e04c66d1478c1a2eb4&limit=10&page=0&sortBy=roundId:desc")
+//   .then(res => res.json())
+//   .then(
+//     (result) => {
+//       console.log(result)
+//       const totalCount = result.totalResults;
+//       const entities = result.results;
+// //      result = JSON.parse(result)
+//       dispatch(actions.customersFetched({ totalCount, entities }));
+//     },
+//     // Note: it's important to handle errors here
+//     // instead of a catch() block so that we don't swallow
+//     // exceptions from actual bugs in components.
+//     (error) => {
+//       error.clientMessage = "Can't find customers";
+//       dispatch(actions.catchError({ error, callType: callTypes.list }));
+//     }
+//   )
+
+  return requestFromServer
+    .getAllRounds()
+    .then(response => {
+      const totalCount = response.data.totalResults;
+      const entities = response.data.results;
       dispatch(actions.customersFetched({ totalCount, entities }));
-    },
-    // Note: it's important to handle errors here
-    // instead of a catch() block so that we don't swallow
-    // exceptions from actual bugs in components.
-    (error) => {
+    })
+    .catch(error => {
       error.clientMessage = "Can't find customers";
       dispatch(actions.catchError({ error, callType: callTypes.list }));
-    }
-  )
-
-  // return requestFromServer
-  //   .findCustomers(queryParams)
-  //   .then(response => {
-  //     const { totalCount, entities } = response.data;
-  //     console.log(totalCount)
-  //     console.log(entities)
-  //     dispatch(actions.customersFetched({ totalCount, entities }));
-  //   })
-  //   .catch(error => {
-  //     error.clientMessage = "Can't find customers";
-  //     dispatch(actions.catchError({ error, callType: callTypes.list }));
-  //   });
+    });
 };
 
 export const fetchCustomer = id => dispatch => {
@@ -48,7 +47,7 @@ export const fetchCustomer = id => dispatch => {
   }
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .getCustomerById(id)
+    .getRoundById(id)
     .then(response => {
       const customer = response.data;
       dispatch(actions.customerFetched({ customerForEdit: customer }));
@@ -62,7 +61,7 @@ export const fetchCustomer = id => dispatch => {
 export const deleteCustomer = id => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .deleteCustomer(id)
+    .deleteRound(id)
     .then(response => {
       dispatch(actions.customerDeleted({ id }));
     })
@@ -75,7 +74,7 @@ export const deleteCustomer = id => dispatch => {
 export const createCustomer = customerForCreation => dispatch => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .createCustomer(customerForCreation)
+    .createRound(customerForCreation)
     .then(response => {
       const { customer } = response.data;
       
@@ -91,7 +90,7 @@ export const updateCustomer = customer => dispatch => {
   // alert('update')
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .updateCustomer(customer)
+    .updateRound(customer)
     .then(() => {
       dispatch(actions.customerUpdated({ customer }));
     })

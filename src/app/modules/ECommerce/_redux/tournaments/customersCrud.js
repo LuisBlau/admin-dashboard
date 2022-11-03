@@ -2,47 +2,47 @@ import axios from "axios";
 
 const ABU = process.env.REACT_APP_API_BASE_URL;
 
-export const CUSTOMERS_URL = ABU + "/api/customers";
+export const ROUNDS_URL = ABU + "/rounds";
 
 // CREATE =>  POST: add a new customer to the server
-export function createCustomer(customer) {
-  return axios.post(CUSTOMERS_URL, { customer });
+export function createRound(tournament) {
+  return axios.post(`${ROUNDS_URL}?gameId=635792e04c66d1478c1a2eb4`, { ...tournament });
 }
 
 // READ
-export function getAllCustomers() {  
-  return axios.get(CUSTOMERS_URL);
+export function getAllRounds() {  
+  return axios.get(`${ROUNDS_URL}?gameId=635792e04c66d1478c1a2eb4&limit=10&page=0&sortBy=roundId:desc`);
 }
 
-export function getCustomerById(customerId) {
-  return axios.get(`${CUSTOMERS_URL}/${customerId}`);
+export function getRoundById(id) {
+  return axios.get(`${ROUNDS_URL}/${id}?gameId=635792e04c66d1478c1a2eb4`);
 }
 
 // Method from server should return QueryResultsModel(items: any[], totalsCount: number)
 // items => filtered/sorted result
 export function findCustomers(queryParams) {
-  return axios.post(`${CUSTOMERS_URL}/find`, { queryParams });
+  return axios.post(`${ROUNDS_URL}/find`, { queryParams });
 }
 
 // UPDATE => patch: update the customer on the server
-export function updateCustomer(customer) {
-  return axios.patch(`${CUSTOMERS_URL}/${customer.id}`, { customer });
+export function updateRound(tournament) {
+  return axios.patch(`${ROUNDS_URL}/${tournament.id}?gameId=635792e04c66d1478c1a2eb4`, { ...tournament });
 }
 
 // UPDATE Status
 export function updateStatusForCustomers(ids, status) {
-  return axios.post(`${CUSTOMERS_URL}/updateStatusForCustomers`, {
+  return axios.post(`${ROUNDS_URL}/updateStatusForCustomers`, {
     ids,
     status
   });
 }
 
 // DELETE => delete the customer from the server
-export function deleteCustomer(customerId) {
-  return axios.delete(`${CUSTOMERS_URL}/${customerId}`);
+export function deleteRound(id) {
+  return axios.delete(`${ROUNDS_URL}/${id}?gameId=635792e04c66d1478c1a2eb4`);
 }
 
 // DELETE Customers by ids
 export function deleteCustomers(ids) {
-  return axios.post(`${CUSTOMERS_URL}/deleteCustomers`, { ids });
+  return axios.post(`${ROUNDS_URL}/deleteCustomers`, { ids });
 }
