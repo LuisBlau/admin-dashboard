@@ -2,7 +2,7 @@ import axios from "axios";
 
 const ABU = process.env.REACT_APP_API_BASE_URL;
 
-export const USERS_URL = ABU + "/api/users";
+export const USERS_URL = ABU + "/users";
 
 // CREATE =>  POST: add a new user to the server
 export function createCustomer(user) {
@@ -11,7 +11,7 @@ export function createCustomer(user) {
 
 // READ
 export function getAllCustomers() {  
-  return axios.get(USERS_URL);
+  return axios.get(`${USERS_URL}?role=user`);
 }
 
 export function getCustomerById(userId) {

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import * as requestFromServer from "./customersCrud";
 import {customersSlice, callTypes} from "./customersSlice";
 
@@ -7,36 +9,18 @@ export const fetchCustomers = queryParams => dispatch => {
   // alert('fetchs')
   dispatch(actions.startCall({ callType: callTypes.list }));
 
-  fetch("https://game-engine-backend-api.herokuapp.com/v1/users?role=user")
-  .then(res => res.json())
-  .then(
-    (result) => {
-      console.log(result)
-      const totalCount = result.totalResults;
-      const entities = result.results;
-//      result = JSON.parse(result)
+  return requestFromServer
+    .getAllCustomers(queryParams)
+    .then(response => {
+      const totalCount = response.data.totalResults;
+      const entities = response.data.results;
+      // console.log(entities)
       dispatch(actions.customersFetched({ totalCount, entities }));
-    },
-    // Note: it's important to handle errors here
-    // instead of a catch() block so that we don't swallow
-    // exceptions from actual bugs in components.
-    (error) => {
-      error.clientMessage = "No data";
+    })
+    .catch(error => {
+      error.clientMessage = "Can't find customers";
       dispatch(actions.catchError({ error, callType: callTypes.list }));
-    }
-  )
-
-  // return requestFromServer
-  //   .findCustomers(queryParams)
-  //   .then(response => {
-  //     const { totalCount, entities } = response.data;
-  //     // console.log(entities)
-  //     dispatch(actions.customersFetched({ totalCount, entities }));
-  //   })
-  //   .catch(error => {
-  //     error.clientMessage = "Can't find customers";
-  //     dispatch(actions.catchError({ error, callType: callTypes.list }));
-  //   });
+    });
 };
 
 export const fetchCustomer = id => dispatch => {

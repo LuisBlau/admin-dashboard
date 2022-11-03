@@ -56,17 +56,17 @@ export function CustomersTable() {
   useEffect(() => {
     // clear selections list
     customersUIProps.setIds([]);
-    // server call by queryParams    
+    // server call by queryParams
     dispatch(actions.fetchCustomers(customersUIProps.queryParams));    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customersUIProps.queryParams, dispatch]);
   // Table columns
   const columns = [
     {
-      dataField: "_id",
+      dataField: "id",
       text: "Id",
       sort: true,
-      formatter: (cell, row) => <>{`${row._id.slice(0, 3)} ... ${row._id.slice(-3)}`}</>,
+      formatter: (cell, row) => <>{`${row.id.slice(0, 3)} ... ${row.id.slice(-3)}`}</>,
       sortCaret: sortCaret,
       headerSortingClasses,
     },
@@ -129,7 +129,7 @@ export function CustomersTable() {
                 classes="table table-head-custom table-vertical-center overflow-hidden"
                 bootstrap4
                 remote
-                keyField="_id"
+                keyField="id"
                 data={entities === null ? [] : entities}
                 columns={columns}
                 // columns={user.email==='superadmin@playestates.com'?columns:adminColumns}

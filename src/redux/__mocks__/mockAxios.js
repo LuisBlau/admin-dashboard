@@ -11,7 +11,7 @@ export default function mockAxios(axios) {
 
   mockAuth(mock);
   mockCustomers(mock);
-  // mockUsers(mock);
+  mockUsers(mock);
   // mockProducts(mock);
   // mockRemarks(mock);
   // mockSpecifications(mock);
