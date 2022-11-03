@@ -63,14 +63,66 @@ export default function mockProducts(mock) {
     return [200];
   });
 
-  mock.onGet(/api\/products\/\d+/).reply(config => {
-    const id = config.url.match(/api\/products\/(\d+)/)[1];
-    const product = carTableMock.find(el => el.id === +id);
-    if (!product) {
-      return [400];
-    }
+  mock.onGet(/v1\/rounds/).reply(config => {
+    return [200, {
+      "results": [
+          {
+              "minPlayers": 1,
+              "maxPlayers": 10,
+              "finalPeriod": 36000,
+              "distributed": false,
+              "locked": false,
+              "roundId": 6,
+              "startTime": 1667379300,
+              "entryPeriod": 900,
+              "playPeriod": 900,
+              "entryAmount": 10,
+              "adminFeeRate": 20,
+              "roundFeeRate": 0,
+              "gameId": "635792e04c66d1478c1a2eb4",
+              "id": "6357a7e8e541872840726085"
+          },
+          {
+              "minPlayers": 1,
+              "maxPlayers": 20,
+              "finalPeriod": 864000,
+              "distributed": false,
+              "locked": false,
+              "roundId": 2,
+              "startTime": 1666828800,
+              "entryPeriod": 259200,
+              "playPeriod": 864000,
+              "entryAmount": 40,
+              "adminFeeRate": 20,
+              "roundFeeRate": 0,
+              "gameId": "635792e04c66d1478c1a2eb4",
+              "id": "6363ce40678985002151fd12"
+          }
+      ],
+      "page": 1,
+      "limit": 10,
+      "totalPages": 1,
+      "totalResults": 2
+  }];
+  });
 
-    return [200, product];
+  mock.onGet(/v1\/rounds\/\d+/).reply(config => {
+    return [200, {
+      "minPlayers": 1,
+      "maxPlayers": 20,
+      "finalPeriod": 864000,
+      "distributed": false,
+      "locked": false,
+      "roundId": 2,
+      "startTime": 1666828800,
+      "entryPeriod": 259200,
+      "playPeriod": 864000,
+      "entryAmount": 40,
+      "adminFeeRate": 20,
+      "roundFeeRate": 0,
+      "gameId": "635792e04c66d1478c1a2eb4",
+      "id": "6363ce40678985002151fd12"
+  }];
   });
 
   mock.onPut(/api\/products\/\d+/).reply(config => {
