@@ -24,9 +24,9 @@ export function findCustomers(queryParams) {
   return axios.post(`${USERS_URL}/find`, { queryParams });
 }
 
-// UPDATE => PUT: update the user on the server
+// UPDATE => PATCH: update the user on the server
 export function updateCustomer(user) {
-  return axios.put(`${USERS_URL}/${user.id}`, { user });
+  return axios.patch(`${USERS_URL}/${user.id}`, { ...user });
 }
 
 // UPDATE Status
