@@ -7,9 +7,10 @@ export const fetchCustomers = queryParams => dispatch => {
   // alert('fetchs')
   dispatch(actions.startCall({ callType: callTypes.list }));  
   return requestFromServer
-    .findCustomers(queryParams)
+    .getAllCustomers(queryParams)
     .then(response => {
-      const { totalCount, entities } = response.data;
+      const totalCount = response.data.totalResults;
+      const entities = response.data.results;
       // console.log(entities)
       dispatch(actions.customersFetched({ totalCount, entities }));
     })

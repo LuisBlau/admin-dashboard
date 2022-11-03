@@ -33,7 +33,7 @@ export default function mockUsers(mock) {
     return [200, { user: newUser }];
   });
 
-  mock.onGet("https://game-engine-backend-api.herokuapp.com/v1/users?role=user").reply(config => {
+  mock.onGet("https://game-engine-backend-api.herokuapp.com/v1/users?role=admin").reply(config => {
     // const mockUtils = new MockUtils();
     // const { queryParams } = JSON.parse(config.data);
     // const filterdUsers = mockUtils.baseFilter(
@@ -48,7 +48,7 @@ export default function mockUsers(mock) {
               "isEmailVerified": false,
               "provider": "email",
               "name": "Steam User",
-              "email": "mailto:steam@gmail.com",
+              "email": "steam@gmail.com",
               "id": "6351cab45e765910d0c9adb9"
           },
           {
@@ -56,7 +56,7 @@ export default function mockUsers(mock) {
               "role": "user",
               "isEmailVerified": false,
               "provider": "google",
-              "email": "mailto:bluesilver0702@gmail.com",
+              "email": "bluesilver0702@gmail.com",
               "name": "Raveewit Anan",
               "id": "635991442bac450021772fda"
           },
@@ -65,7 +65,7 @@ export default function mockUsers(mock) {
               "role": "user",
               "isEmailVerified": false,
               "provider": "google",
-              "email": "mailto:nguyenbiz921@gmail.com",
+              "email": "nguyenbiz921@gmail.com",
               "name": "Galaxy undefined",
               "stripeCustomer": {
                   "id": "cus_MgkQEeiN0RUsQa",
@@ -78,7 +78,7 @@ export default function mockUsers(mock) {
                   "delinquent": false,
                   "description": null,
                   "discount": null,
-                  "email": "mailto:nguyenbiz921@gmail.com",
+                  "email": "nguyenbiz921@gmail.com",
                   "invoice_prefix": "16392C96",
                   "invoice_settings": {
                       "custom_fields": null,
@@ -102,7 +102,7 @@ export default function mockUsers(mock) {
               "role": "user",
               "isEmailVerified": false,
               "provider": "google",
-              "email": "mailto:daogods@gmail.com",
+              "email": "daogods@gmail.com",
               "name": "AA A",
               "stripeCustomer": {
                   "id": "cus_Mj4yLtpbN5Pjv9",
@@ -115,7 +115,7 @@ export default function mockUsers(mock) {
                   "delinquent": false,
                   "description": null,
                   "discount": null,
-                  "email": "mailto:daogods@gmail.com",
+                  "email": "daogods@gmail.com",
                   "invoice_prefix": "56FB06AA",
                   "invoice_settings": {
                       "custom_fields": null,
@@ -139,7 +139,7 @@ export default function mockUsers(mock) {
               "role": "user",
               "isEmailVerified": false,
               "provider": "google",
-              "email": "mailto:mohsentbusiness@gmail.com",
+              "email": "mohsentbusiness@gmail.com",
               "name": "Mohsen T",
               "stripeCustomer": {
                   "id": "cus_MgpzGYH4yBphFB",
@@ -152,7 +152,7 @@ export default function mockUsers(mock) {
                   "delinquent": false,
                   "description": null,
                   "discount": null,
-                  "email": "mailto:mohsentbusiness@gmail.com",
+                  "email": "mohsentbusiness@gmail.com",
                   "invoice_prefix": "67FC88DD",
                   "invoice_settings": {
                       "custom_fields": null,
@@ -177,7 +177,7 @@ export default function mockUsers(mock) {
               "isEmailVerified": false,
               "provider": "email",
               "name": "daren",
-              "email": "mailto:securemasterbusiness@gmail.com",
+              "email": "securemasterbusiness@gmail.com",
               "id": "635ab119d772cd0021d39646"
           },
           {
@@ -186,7 +186,7 @@ export default function mockUsers(mock) {
               "isEmailVerified": false,
               "provider": "email",
               "name": "super",
-              "email": "mailto:super@playestates.com",
+              "email": "super@playestates.com",
               "id": "635ac356d772cd0021d3969c"
           },
           {
@@ -194,7 +194,7 @@ export default function mockUsers(mock) {
               "role": "user",
               "isEmailVerified": false,
               "provider": "email",
-              "email": "mailto:fullcoder525@gmail.com",
+              "email": "fullcoder525@gmail.com",
               "name": "Supercrytoking",
               "id": "635af1f0d772cd0021d396da"
           },
@@ -203,7 +203,7 @@ export default function mockUsers(mock) {
               "role": "user",
               "isEmailVerified": false,
               "provider": "email",
-              "email": "mailto:superadmin@playestates.com",
+              "email": "superadmin@playestates.com",
               "name": "Admin",
               "id": "635af835d772cd0021d396fe"
           },
@@ -212,7 +212,7 @@ export default function mockUsers(mock) {
               "role": "user",
               "isEmailVerified": false,
               "provider": "google",
-              "email": "mailto:playestates2022@gmail.com",
+              "email": "playestates2022@gmail.com",
               "name": "play estates",
               "id": "635f14215d1faa002190859a"
           }
@@ -245,14 +245,22 @@ export default function mockUsers(mock) {
     return [200];
   });
 
-  mock.onGet(/api\/users\/\d+/).reply(config => {
-    const id = config.url.match(/api\/users\/(\d+)/)[1];
-    const user = userTableMock.find(el => el.id === +id);
-    if (!user) {
-      return [400];
-    }
+  mock.onGet(/v1\/users\/\d+/).reply(config => {
+    // const id = config.url.match(/https:\/\/game-engine-backend-api.herokuapp.com\/v1\/users\/(\d+)/)[1];
+    // const user = userTableMock.find(el => el.id === +id);
+    // if (!user) {
+    //   return [400];
+    // }
 
-    return [200, user];
+    return [200, {
+      "steam": "76561199404390245",
+      "role": "admin",
+      "isEmailVerified": false,
+      "provider": "email",
+      "name": "AdminTest",
+      "email": "admintest@playestates.com",
+      "id": "63578ce0f0d07a26ccada392"
+  }];
   });
 
   mock.onPut(/api\/users\/\d+/).reply(config => {

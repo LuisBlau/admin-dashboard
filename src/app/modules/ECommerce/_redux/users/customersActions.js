@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import * as requestFromServer from "./customersCrud";
 import {customersSlice, callTypes} from "./customersSlice";
 

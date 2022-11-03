@@ -62,10 +62,10 @@ export function CustomersTable() {
   // Table columns
   const columns = [
     {
-      dataField: "_id",
+      dataField: "id",
       text: "Id",
       sort: true,
-      formatter: (cell, row) => <>{`${row._id.slice(0, 3)} ... ${row._id.slice(-3)}`}</>,
+      formatter: (cell, row) => <>{`${row.id.slice(0, 3)} ... ${row.id.slice(-3)}`}</>,
       sortCaret: sortCaret,
       headerSortingClasses,
     },
@@ -134,7 +134,7 @@ export function CustomersTable() {
                 classes="table table-head-custom table-vertical-center overflow-hidden"
                 bootstrap4
                 remote
-                keyField="_id"
+                keyField="id"
                 data={entities === null ? [] : entities}
                 columns={columns}
                 // columns={user.email==='superadmin@playestates.com'?columns:adminColumns}

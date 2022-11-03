@@ -58,7 +58,7 @@ export const customersSlice = createSlice({
       state.error = null;
       state.actionsLoading = false;      
       state.entities = state.entities.map(entity => {
-        if (entity._id === action.payload.customer._id) {
+        if (entity.id === action.payload.customer.id) {
           return action.payload.customer;
         }
         return entity;

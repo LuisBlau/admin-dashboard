@@ -11,7 +11,7 @@ export function createCustomer(user) {
 
 // READ
 export function getAllCustomers() {  
-  return axios.get(`${USERS_URL}?role=user`);
+  return axios.get(`${USERS_URL}?role=admin`);
 }
 
 export function getCustomerById(userId) {
@@ -26,7 +26,7 @@ export function findCustomers(queryParams) {
 
 // UPDATE => PUT: update the user on the server
 export function updateCustomer(user) {
-  return axios.put(`${USERS_URL}/${user._id}`, { user });
+  return axios.put(`${USERS_URL}/${user.id}`, { user });
 }
 
 // UPDATE Status

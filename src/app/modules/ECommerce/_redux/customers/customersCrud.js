@@ -2,7 +2,7 @@ import axios from "axios";
 
 const ABU = process.env.REACT_APP_API_BASE_URL;
 
-export const CUSTOMERS_URL = ABU + "/api/customers";
+export const CUSTOMERS_URL = ABU + "/users";
 
 // CREATE =>  POST: add a new customer to the server
 export function createCustomer(customer) {
@@ -11,7 +11,7 @@ export function createCustomer(customer) {
 
 // READ
 export function getAllCustomers() {  
-  return axios.get(CUSTOMERS_URL);
+  return axios.get(`${CUSTOMERS_URL}?role=user`);
 }
 
 export function getCustomerById(customerId) {
@@ -26,7 +26,7 @@ export function findCustomers(queryParams) {
 
 // UPDATE => PUT: update the customer on the server
 export function updateCustomer(customer) {
-  return axios.put(`${CUSTOMERS_URL}/${customer._id}`, { customer });
+  return axios.put(`${CUSTOMERS_URL}/${customer.id}`, { customer });
 }
 
 // UPDATE Status
