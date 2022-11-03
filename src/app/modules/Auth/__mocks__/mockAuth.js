@@ -18,7 +18,27 @@ export default function mockAuth(mock) {
       );
 
       if (user) {
-        return [200, { ...user, password: undefined }];
+        return [200, {
+          "user": {
+              "steam": "76561199404390245",
+              "role": "admin",
+              "isEmailVerified": false,
+              "provider": "email",
+              "name": "Admin",
+              "email": "mailto:admin@playestates.com",
+              "id": "63578ce0f0d07a26ccada392"
+          },
+          "tokens": {
+              "access": {
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzU3OGNlMGYwZDA3YTI2Y2NhZGEzOTIiLCJpYXQiOjE2Njc0Mzg4OTIsImV4cCI6MTY3MDAzMDg5MiwidHlwZSI6ImFjY2VzcyJ9.lhUU8uO7tyn248Ef_v_FCUKTyP7hO00-MmIbyez8B5g",
+                  "expires": "2022-12-03T01:28:12.818Z"
+              },
+              "refresh": {
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzU3OGNlMGYwZDA3YTI2Y2NhZGEzOTIiLCJpYXQiOjE2Njc0Mzg4OTIsImV4cCI6NTM5OTkxODg5MiwidHlwZSI6InJlZnJlc2gifQ.U9n2cCDVH3spk5OagOwJ2q-ckiNKDO7SJKGCJHZbjE4",
+                  "expires": "2141-02-12T01:28:12.820Z"
+              }
+          }
+      }];
       }
     }
 
