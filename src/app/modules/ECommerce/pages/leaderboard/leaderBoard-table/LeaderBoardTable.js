@@ -7,7 +7,7 @@ import paginationFactory, {
   PaginationProvider,
 } from "react-bootstrap-table2-paginator";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import * as actions from "../../../_redux/tournaments/customersActions";
+import * as actions from "../../../_redux/leaderboard/leaderboardActions";
 import {
   getSelectRow,
   getHandlerTableChange,
@@ -16,12 +16,11 @@ import {
   sortCaret,
   headerSortingClasses,
 } from "../../../../../../_metronic/_helpers";
-import * as uiHelpers from "../CustomersUIHelpers";
-import * as columnFormatters from "./column-formatters";
+import * as uiHelpers from "../LeaderBoardUIHelpers";
 import { Pagination } from "../../../../../../_metronic/_partials/controls";
-import { useCustomersUIContext } from "../CustomersUIContext";
+import { useLeaderBoardUIContext } from "../LeaderBoardUIContext";
 
-export function CustomersTable() {
+export function LeaderBoardTable() {
   const {isAuthorized, user, token} = useSelector(
     ({auth}) => ({
         isAuthorized: auth.user != null,
@@ -29,103 +28,94 @@ export function CustomersTable() {
         token: auth.authToken
     }),
     shallowEqual
-);
-  // Customers UI Context
-  const customersUIContext = useCustomersUIContext();
-  const customersUIProps = useMemo(() => {
-    return {
-      ids: customersUIContext.ids,
-      setIds: customersUIContext.setIds,
-      queryParams: customersUIContext.queryParams,
-      setQueryParams: customersUIContext.setQueryParams,
-      openEditCustomerDialog: customersUIContext.openEditCustomerDialog,
-      openDeleteCustomerDialog: customersUIContext.openDeleteCustomerDialog,
-    };
-  }, [customersUIContext]);
+  );
 
-  // Getting curret state of customers list from store (Redux)  
+  // LeaderBoard UI Context
+  const leaderBoardUIContext = useLeaderBoardUIContext();
+  const leaderBoardUIProps = useMemo(() => {
+    return {
+      ids: leaderBoardUIContext.ids,
+      setIds: leaderBoardUIContext.setIds,
+      queryParams: leaderBoardUIContext.queryParams,
+      setQueryParams: leaderBoardUIContext.setQueryParams,
+    };
+  }, [leaderBoardUIContext]);
+
+  // Getting curret state of leaderBoard list from store (Redux)
   const { currentState } = useSelector(
-    (state) => ({ currentState: state.rounds }),
+    (state) => ({ currentState: state.leaderBoard }),
     shallowEqual
   );
   const { totalCount, entities, listLoading } = currentState;
 
-  // Customers Redux state
+  // LeaderBoard Redux state
   const dispatch = useDispatch();
   useEffect(() => {
     // clear selections list
-    customersUIProps.setIds([]);
-    // server call by queryParams    
-    dispatch(actions.fetchCustomers(customersUIProps.queryParams));    
+    leaderBoardUIProps.setIds([]);
+    // server call by queryParams
+    dispatch(actions.fetchLeaderBoard(leaderBoardUIProps.queryParams));    
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [customersUIProps.queryParams, dispatch]);
+  }, [leaderBoardUIProps.queryParams, dispatch]);
   // Table columns
   const columns = [
     {
-      dataField: "id",
+      dataField: "_id",
       text: "Id",
       sort: true,
-      formatter: (cell, row) => <>{`${row.id.slice(0, 3)} ... ${row.id.slice(-3)}`}</>,
+      formatter: (cell, row) => <>{`${row._id.slice(0, 3)} ... ${row._id.slice(-3)}`}</>,
       sortCaret: sortCaret,
       headerSortingClasses,
     },
+    // {
+    //   dataField: "roundId",
+    //   text: "Round Id",
+    //   sort: true,
+    //   sortCaret: sortCaret,
+    //   headerSortingClasses,
+    // },
     {
-      dataField: "startTime",
-      text: "Start Time",
+      dataField: "address",
+      text: "Address",
       sort: true,
+      formatter: (cell, row) => <>{`${row.address.slice(0, 5)} ... ${row.address.slice(-5)}`}</>,
       sortCaret: sortCaret,
       headerSortingClasses,
     },
-
     {
-      dataField: "finalPeriod",
-      text: "Final Period",
-      sort: true,
-      sortCaret: sortCaret,
-      headerSortingClasses,
+      dataField: "steam",
+      text: "Steam",
     },
-
     {
-      dataField: "minPlayers",
-      text: "Min-Players",
-      sort: true,
-      sortCaret: sortCaret,
-      headerSortingClasses,
+      dataField: "iscore",
+      text: "iScore",
     },
-
     {
-      dataField: "maxPlayers",
-      text: "Max-Players",
-      sort: true,
-      // formatter: columnFormatters.StatusColumnFormatter,
-      sortCaret: sortCaret,
-      headerSortingClasses,
+      dataField: "score",
+      text: "Score",
     },
-
     {
-      dataField: "action",
-      text: "Actions",
-      formatter: columnFormatters.ActionsColumnFormatter,
-      formatExtraData: {
-        openEditCustomerDialog: customersUIProps.openEditCustomerDialog,
-        openDeleteCustomerDialog: customersUIProps.openDeleteCustomerDialog,
-      },
-      classes: "text-right pr-0",
-      headerClasses: "text-right pr-3",
-      style: {
-        minWidth: "100px",
-      },
+      dataField: "ranking",
+      text: "Ranking",
+    },
+    {
+      dataField: "rewards",
+      text: "Rewards",
+    },
+    {
+      dataField: "roundScore",
+      text: "Round Score",
     },
   ];
 
   // Table pagination properties
-  const paginationOptions = {
-    custom: true,
-    totalSize: totalCount,
-    sizePerPageList: uiHelpers.sizePerPageList,
-    sizePerPage: customersUIProps.queryParams.pageSize,
-    page: customersUIProps.queryParams.pageNumber,
-  };
+  // const paginationOptions = {
+  //   custom: true,
+  //   totalSize: totalCount,
+  //   sizePerPageList: uiHelpers.sizePerPageList,
+  //   sizePerPage: leaderBoardUIProps.queryParams.pageSize,
+  //   page: leaderBoardUIProps.queryParams.pageNumber,
+  // };
 
   return (
     <>
@@ -142,18 +132,18 @@ export function CustomersTable() {
                 classes="table table-head-custom table-vertical-center overflow-hidden"
                 bootstrap4
                 remote
-                keyField="id"
+                keyField="_id"
                 data={entities === null ? [] : entities}
                 columns={columns}
                 // columns={user.email==='superadmin@playestates.com'?columns:adminColumns}
                 defaultSorted={uiHelpers.defaultSorted}
                 onTableChange={getHandlerTableChange(
-                  customersUIProps.setQueryParams
+                  leaderBoardUIProps.setQueryParams
                 )}
                 // selectRow={getSelectRow({
                 //   entities,
-                //   ids: customersUIProps.ids,
-                //   setIds: customersUIProps.setIds,
+                //   ids: leaderBoardUIProps.ids,
+                //   setIds: leaderBoardUIProps.setIds,
                 // })}
                 // {...paginationTableProps}
               >

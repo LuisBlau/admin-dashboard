@@ -1,7 +1,7 @@
 import * as requestFromServer from "./customersCrud";
-import {customersSlice, callTypes} from "./customersSlice";
+import {roundsSlice, callTypes} from "./customersSlice";
 
-const {actions} = customersSlice;
+const {actions} = roundsSlice;
 
 export const fetchCustomers = queryParams => dispatch => {
 

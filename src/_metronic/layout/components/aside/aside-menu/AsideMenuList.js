@@ -80,6 +80,20 @@ export function AsideMenuList({ layoutProps }) {
                     </i>
                     <span className="menu-text">Tournaments</span>
                   </NavLink>                  
+                </li>
+
+                <li
+                    className={`menu-item ${getMenuItemActive(
+                        "/management/leaderboard"
+                    )}`}
+                    aria-haspopup="true"
+                >
+                  <NavLink className="menu-link" to="/management/leaderboard">
+                    <i className="menu-bullet menu-bullet-dot">
+                      <span/>
+                    </i>
+                    <span className="menu-text">Leaderboard</span>
+                  </NavLink>                  
                 </li>            
               </ul>
             </div>

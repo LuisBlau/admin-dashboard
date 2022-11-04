@@ -3,6 +3,7 @@ import { Redirect, Switch } from "react-router-dom";
 import { UsersPage } from "./users/CustomersPage";
 import { CustomersPage } from "./customers/CustomersPage";
 import { TournamentsPage } from "./tournaments/CustomersPage";
+import { LeaderBoardPage } from "./leaderboard/LeaderBoardPage";
 
 // import { ProductsPage } from "./products/ProductsPage";
 // import { ProductEdit } from "./products/product-edit/ProductEdit";
@@ -23,6 +24,7 @@ export default function eCommercePage() {
         <ContentRoute path="/management/users" component={UsersPage} />
         <ContentRoute path="/management/customers" component={CustomersPage} />
         <ContentRoute path="/management/tournaments" component={TournamentsPage} />
+        <ContentRoute path="/management/leaderboard" component={LeaderBoardPage} />
       </Switch>
     </Suspense>
   );

@@ -13,8 +13,8 @@ export const callTypes = {
   action: "action"
 };
 
-export const customersSlice = createSlice({
-  name: "customers",
+export const roundsSlice = createSlice({
+  name: "rounds",
   initialState: initialCustomersState,
   reducers: {
     catchError: (state, action) => {

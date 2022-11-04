@@ -107,7 +107,7 @@ export default function mockProducts(mock) {
               "finalPeriod": 864000,
               "distributed": false,
               "locked": false,
-              "roundId": 2,
+              "roundId": 16,
               "startTime": 1666828800,
               "entryPeriod": 259200,
               "playPeriod": 864000,
@@ -142,6 +142,41 @@ export default function mockProducts(mock) {
       "gameId": "635792e04c66d1478c1a2eb4",
       "id": "6363ce40678985002151fd12"
   }];
+  });
+
+  mock.onGet("https://game-engine-backend-api.herokuapp.com/v1/steams/leader-board?gameId=635792e04c66d1478c1a2eb4&roundId=6&limit=100").reply(config => {
+    return [200, [
+      {
+          "_id": "636231cb392e0e002107e2a9",
+          "address": "0xD15E7FCB36f27399f74493D5F48541909169af1a",
+          "steam": "76561199419288972",
+          "iscore": 1,
+          "score": 45,
+          "ranking": 1,
+          "rewards": 0,
+          "roundId": 6,
+          "gameId": "635792e04c66d1478c1a2eb4",
+          "createdAt": "2022-11-02T09:00:59.983Z",
+          "updatedAt": "2022-11-02T09:29:06.321Z",
+          "__v": 0,
+          "roundScore": 44
+      },
+      {
+          "_id": "636232de392e0e002107e2c8",
+          "address": "0xF0d096D33559cDc5f527435b82073c108D6c3107",
+          "steam": "76561199386872764",
+          "iscore": 320,
+          "score": 350,
+          "ranking": 2,
+          "rewards": 0,
+          "roundId": 6,
+          "gameId": "635792e04c66d1478c1a2eb4",
+          "createdAt": "2022-11-02T09:05:34.975Z",
+          "updatedAt": "2022-11-02T09:29:06.931Z",
+          "__v": 0,
+          "roundScore": 30
+      }
+  ]];
   });
 
   mock.onPut(/api\/products\/\d+/).reply(config => {
