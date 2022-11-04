@@ -55,7 +55,7 @@ export function updateRound(tournament) {
     distributed: (tournament.distributed.toString().toLowerCase() === "true" ? true : false),
     locked: (tournament.locked.toString().toLowerCase() === "true" ? true : false)
   };
-  return axios.patch(`${ROUNDS_URL}/${tournament.id}?gameId=635792e04c66d1478c1a2eb4`, payload);
+  return axios.patch(`${ROUNDS_URL}/${tournament.roundId}?gameId=635792e04c66d1478c1a2eb4`, payload);
 }
 
 // UPDATE Status
