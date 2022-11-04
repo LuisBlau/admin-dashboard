@@ -22,7 +22,7 @@ export function CustomersCard() {
   return (
     <Card>
       <CardHeader title="Administrators list">
-        <CardHeaderToolbar>
+        {/* <CardHeaderToolbar>
           <button
             type="button"
             className="btn btn-primary"
@@ -30,7 +30,7 @@ export function CustomersCard() {
           >
             New User
           </button>
-        </CardHeaderToolbar>
+        </CardHeaderToolbar> */}
       </CardHeader>
       <CardBody>
         {/* <CustomersFilter /> */}

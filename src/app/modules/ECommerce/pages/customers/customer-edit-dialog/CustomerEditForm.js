@@ -54,7 +54,7 @@ export function CustomerEditForm({
     <>
       <Formik
         enableReinitialize={true}
-        initialValues={customer}
+        initialValues={{...customer, password: ""}}
         validationSchema={CustomerEditSchema}
         onSubmit={(values) => {
           saveCustomer(values);

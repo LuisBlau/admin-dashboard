@@ -37,7 +37,7 @@ export function CustomerEditForm({
     <>
       <Formik
         enableReinitialize={true}
-        initialValues={customer}
+        initialValues={{...customer, password: ""}}
         validationSchema={CustomerEditSchema}
         onSubmit={(values) => {
           saveCustomer(values);
@@ -51,7 +51,7 @@ export function CustomerEditForm({
                   <div className="spinner spinner-lg spinner-success" />
                 </div>
               )}
-              <Form className="form form-label-right">
+              <Form className="form form-label-right" autoComplete="off">
                 <div className="form-group row">
                   <div className="col-lg-6">
                     <Field
