@@ -6,14 +6,12 @@ export const USERS_URL = ABU + "/users";
 
 // CREATE =>  POST: add a new user to the server
 export function createCustomer(user) {
-  let payload = {...user};
-
-  delete(payload.id);
-  delete(payload.steam);
-  delete(payload.role);
-  delete(payload.isEmailVerified);
-  delete(payload.provider);
-  delete(payload.stripeCustomer);
+  let payload = {
+    name: user.name,
+    email: user.email,
+    role: "admin",
+    password: user.password
+  };
   return axios.post(USERS_URL, payload);
 }
 
@@ -34,14 +32,12 @@ export function findCustomers(queryParams) {
 
 // UPDATE => PATCH: update the user on the server
 export function updateCustomer(user) {
-  let payload = {...user};
-
-  delete(payload.id);
-  delete(payload.steam);
-  delete(payload.role);
-  delete(payload.isEmailVerified);
-  delete(payload.provider);
-  delete(payload.stripeCustomer);
+  let payload = {
+    name: user.name,
+    email: user.email,
+    role: "admin",
+    password: user.password
+  };
   return axios.patch(`${USERS_URL}/${user.id}`, payload);
 }
 

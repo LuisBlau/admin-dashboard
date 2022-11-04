@@ -8,7 +8,9 @@ export const CUSTOMERS_URL = ABU + "/users";
 export function createCustomer(customer) {
   let payload = {
     name: customer.name,
-    email: customer.email
+    email: customer.email,
+    role: "user",
+    password: customer.password
   };
   return axios.post(CUSTOMERS_URL, payload);
 }
@@ -32,7 +34,9 @@ export function findCustomers(queryParams) {
 export function updateCustomer(customer) {
   let payload = {
     name: customer.name,
-    email: customer.email
+    email: customer.email,
+    role: "user",
+    password: customer.password
   };
   return axios.patch(`${CUSTOMERS_URL}/${customer.id}`, payload);
 }

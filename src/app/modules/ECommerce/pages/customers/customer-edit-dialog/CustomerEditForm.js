@@ -15,8 +15,12 @@ import {
 
 // Validation schema
 const CustomerEditSchema = Yup.object().shape({
-  name: Yup.string(),
-    // .required("Display Name is required"),
+  name: Yup.string()
+    .required("Display Name is required"),
+  password: Yup.string()
+    .min(3, "Minimum 3 symbols")
+    .max(50, "Maximum 50 symbols")
+    .required("Password is required"),
   // customUrl: Yup.string(),
   //   // .min(3, "Minimum 3 symbols")
   //   // .max(50, "Maximum 50 symbols")
@@ -59,13 +63,13 @@ export function CustomerEditForm({
                   <div className="spinner spinner-lg spinner-success" />
                 </div>
               )}
-              <Form className="form form-label-right">
+              <Form className="form form-label-right" autoComplete="off">
                 <div className="form-group row">
                   <div className="col-lg-6">
                     <Field
                       name="name"
                       component={Input}
-                      placeholder="Trista Francis"
+                      placeholder="Enter name."
                       label="Display Name"
                     />
 
@@ -79,8 +83,16 @@ export function CustomerEditForm({
                     <Field
                       name="email"
                       component={Input}
-                      placeholder="Enter your email."
+                      placeholder="Enter email."
                       label="Email"
+                    />
+
+                    <Field
+                      name="password"
+                      component={Input}
+                      type="password"
+                      placeholder="Enter password."
+                      label="Password"
                     />
                     
                     {/* <label>Enter Bio</label>

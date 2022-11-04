@@ -32,6 +32,8 @@ export function CustomersUIProvider({customersUIEvents, children}) {
     name: "",    
     // customUrl: "",
     email: "",
+    password: "",
+    role: "user"
     // bio: "",
     // facebookUname: "",
     // twitterUname: "",
