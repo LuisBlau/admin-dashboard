@@ -70,13 +70,19 @@ export function CustomerEditForm({
               <Form className="form form-label-right">
                 <div className="form-group row">
                   <div className="col-lg-6">
-                    {!customer.roundId && 
+                    {/* {!customer.roundId && 
                       (<Field
                         name="roundId"
                         component={Input}
                         placeholder="Enter Round Id"
                         label="Round ID"
-                      />)}
+                      />)} */}
+                    <Field
+                      name="roundId"
+                      component={Input}
+                      placeholder="Enter Round Id"
+                      label="Round ID"
+                    />
                     <Field
                       name="startTime"
                       component={Input}

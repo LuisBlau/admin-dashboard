@@ -76,7 +76,7 @@ export const createCustomer = customerForCreation => dispatch => {
   return requestFromServer
     .createRound(customerForCreation)
     .then(response => {
-      const { customer } = response.data;
+      const customer = response.data;
       
       dispatch(actions.customerCreated({ customer }));
     })

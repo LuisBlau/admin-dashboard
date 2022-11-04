@@ -125,6 +125,25 @@ export default function mockProducts(mock) {
   }];
   });
 
+  mock.onPost(/v1\/rounds/).reply(config => {
+    return [201, {
+      "minPlayers": 1,
+      "maxPlayers": 20,
+      "finalPeriod": 864000,
+      "distributed": true,
+      "locked": false,
+      "roundId": 2,
+      "startTime": 1666828800,
+      "entryPeriod": 259200,
+      "playPeriod": 864000,
+      "entryAmount": 40,
+      "adminFeeRate": 20,
+      "roundFeeRate": 0,
+      "gameId": "635792e04c66d1478c1a2eb4",
+      "id": "6363ce40678985002151fd12"
+  }];
+  });
+
   mock.onPut(/api\/products\/\d+/).reply(config => {
     const id = config.url.match(/api\/products\/(\d+)/)[1];
     const { product } = JSON.parse(config.data);

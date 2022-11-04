@@ -57,7 +57,7 @@ export const createCustomer = customerForCreation => dispatch => {
   return requestFromServer
     .createCustomer(customerForCreation)
     .then(response => {
-      const { customer } = response.data;
+      const customer = response.data;
       
       dispatch(actions.customerCreated({ customer }));
     })
