@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { Modal } from "react-bootstrap";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import {ModalProgressBar} from "../../../../../../_metronic/_partials/controls";
-import * as actions from "../../../_redux/customers/customersActions";
+import * as actions from "../../../_redux/users/customersActions";
 import {useCustomersUIContext} from "../CustomersUIContext";
 
 export function CustomerDeleteDialog({ id, show, onHide }) {

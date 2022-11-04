@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { Modal } from "react-bootstrap";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import * as actions from "../../../_redux/customers/customersActions";
+import * as actions from "../../../_redux/tournaments/customersActions";
 import { useCustomersUIContext } from "../CustomersUIContext";
 import {ModalProgressBar} from "../../../../../../_metronic/_partials/controls";
 
@@ -36,6 +36,7 @@ export function CustomersDeleteDialog({ show, onHide }) {
 
   const deleteCustomers = () => {
     // server request for deleting customer by selected ids
+    debugger;
     dispatch(actions.deleteCustomers(customersUIProps.ids)).then(() => {
       // refresh list after deletion
       dispatch(actions.fetchCustomers(customersUIProps.queryParams)).then(

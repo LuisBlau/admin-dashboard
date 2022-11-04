@@ -63,6 +63,25 @@ export default function mockProducts(mock) {
     return [200];
   });
 
+  mock.onGet(/v1\/rounds\/\d+/).reply(config => {
+    return [200, {
+      "minPlayers": 1,
+      "maxPlayers": 20,
+      "finalPeriod": 864000,
+      "distributed": true,
+      "locked": false,
+      "roundId": 2,
+      "startTime": 1666828800,
+      "entryPeriod": 259200,
+      "playPeriod": 864000,
+      "entryAmount": 40,
+      "adminFeeRate": 20,
+      "roundFeeRate": 0,
+      "gameId": "635792e04c66d1478c1a2eb4",
+      "id": "6363ce40678985002151fd12"
+  }];
+  });
+
   mock.onGet(/v1\/rounds/).reply(config => {
     return [200, {
       "results": [
@@ -103,25 +122,6 @@ export default function mockProducts(mock) {
       "limit": 10,
       "totalPages": 1,
       "totalResults": 2
-  }];
-  });
-
-  mock.onGet(/v1\/rounds\/\d+/).reply(config => {
-    return [200, {
-      "minPlayers": 1,
-      "maxPlayers": 20,
-      "finalPeriod": 864000,
-      "distributed": false,
-      "locked": false,
-      "roundId": 2,
-      "startTime": 1666828800,
-      "entryPeriod": 259200,
-      "playPeriod": 864000,
-      "entryAmount": 40,
-      "adminFeeRate": 20,
-      "roundFeeRate": 0,
-      "gameId": "635792e04c66d1478c1a2eb4",
-      "id": "6363ce40678985002151fd12"
   }];
   });
 

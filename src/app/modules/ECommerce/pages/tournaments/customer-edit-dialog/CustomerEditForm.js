@@ -9,30 +9,38 @@ import * as Yup from "yup";
 import {
   Input,
   Select,
+  Checkbox,
   DatePickerField,
 } from "../../../../../../_metronic/_partials/controls";
 
 
 // Validation schema
 const CustomerEditSchema = Yup.object().shape({
-  name: Yup.string(),
-    // .required("Display Name is required"),
-  customUrl: Yup.string(),
-    // .min(3, "Minimum 3 symbols")
-    // .max(50, "Maximum 50 symbols")
-    // .required("Custom URL is required"),
-  email: Yup.string()
-    .email("Invalid email"),
+  roundId: Yup.number()
+    .required()
+    .positive()
+    .integer(),
+  startTime: Yup.number()
+    .required()
+    .positive()
+    .integer(),
+  entryPeriod: Yup.string().required(),
     // .required("Email is required"),
-  bio: Yup.string(),
-    // .required("Bio is required"),
-  facebookUname: Yup.string(), 
-    // .required("Facebook Name is required"),
-  twitterUname: Yup.string(),
-    // .required("Twitter Name is required"),
-  discordUname: Yup.string(),
-    // .required("Discord Name is required"), 
-  // waddress: Yup.string(),
+  minPlayers: Yup.number()
+    .required()
+    .positive()
+    .integer(),
+  maxPlayers: Yup.number()
+    .required()
+    .positive()
+    .integer(),
+  playPeriod: Yup.string().required(),
+  finalPeriod: Yup.string().required(),
+  entryAmount: Yup.number().required().integer(),
+  adminFeeRate: Yup.number().required(),
+  roundFeeRate: Yup.number().required(),
+  distributed: Yup.bool().required(),
+  locked: Yup.bool().required(),
 });
 
 export function CustomerEditForm({
@@ -63,24 +71,78 @@ export function CustomerEditForm({
                 <div className="form-group row">
                   <div className="col-lg-6">
                     <Field
-                      name="name"
+                      name="roundId"
                       component={Input}
-                      placeholder="Trista Francis"
+                      placeholder="Enter Round Id"
+                      label="Round ID"
+                    />
+                    <Field
+                      name="startTime"
+                      component={Input}
+                      placeholder="Enter Start time"
                       label="Start time"
                     />
-
                     <Field
-                      name="customUrl"
+                      name="entryPeriod"
                       component={Input}
-                      placeholder="Axies Trista Francis.com/"
-                      label="End time"
+                      placeholder="Enter Entry Period"
+                      label="Entry Period"
                     />
-
                     <Field
-                      name="email"
+                      name="playPeriod"
                       component={Input}
-                      placeholder="Enter your email."
-                      label="Game Selection"
+                      placeholder="Enter Play Period"
+                      label="Play Period"
+                    />
+                    <Field
+                      name="finalPeriod"
+                      component={Input}
+                      placeholder="Enter Final Period"
+                      label="Final Period"
+                    />
+                    <Field
+                      name="minPlayers"
+                      component={Input}
+                      placeholder="Enter Min Players."
+                      label="Min Players"
+                    />
+                    </div>
+                    <div className="col-lg-6">
+                    <Field
+                      name="maxPlayers"
+                      component={Input}
+                      placeholder="Enter Max Players."
+                      label="Max Players"
+                    />
+                    <Field
+                      name="entryAmount"
+                      component={Input}
+                      placeholder="Enter Entry Amounts."
+                      label="Entry Amounts"
+                    />
+                    <Field
+                      name="adminFeeRate"
+                      component={Input}
+                      placeholder="Enter Admin Fee Rate."
+                      label="Admin Fee Rate"
+                    />
+                    <Field
+                      name="roundFeeRate"
+                      component={Input}
+                      placeholder="Enter Round Fee Rate."
+                      label="Round Fee Rate"
+                    />
+                    <Field
+                      name="distributed"
+                      component={Input}
+                      type="text"
+                      label="Distributed"
+                    />
+                    <Field
+                      name="locked"
+                      component={Input}
+                      type="text"
+                      label="Locked"
                     />
                   </div>
                 </div>

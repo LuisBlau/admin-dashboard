@@ -56,14 +56,14 @@ export function CustomerDeleteDialog({ id, show, onHide }) {
       {/*end::Loading*/}
       <Modal.Header closeButton>
         <Modal.Title id="example-modal-sizes-title-lg">
-          User Delete
+        Customer Delete
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {!isLoading && (
-          <span>Are you sure to permanently delete this user?</span>
+          <span>Are you sure to permanently delete this customer?</span>
         )}
-        {isLoading && <span>User is deleting...</span>}
+        {isLoading && <span>Customer is deleting...</span>}
       </Modal.Body>
       <Modal.Footer>
         <div>

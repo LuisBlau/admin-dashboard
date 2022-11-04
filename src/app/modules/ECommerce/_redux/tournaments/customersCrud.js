@@ -6,7 +6,11 @@ export const ROUNDS_URL = ABU + "/rounds";
 
 // CREATE =>  POST: add a new customer to the server
 export function createRound(tournament) {
-  return axios.post(`${ROUNDS_URL}?gameId=635792e04c66d1478c1a2eb4`, { ...tournament });
+  let payload = {...tournament};
+
+  delete(payload.id);
+  delete(payload.gameId);
+  return axios.post(`${ROUNDS_URL}?gameId=635792e04c66d1478c1a2eb4`, payload);
 }
 
 // READ
@@ -26,7 +30,11 @@ export function findCustomers(queryParams) {
 
 // UPDATE => patch: update the customer on the server
 export function updateRound(tournament) {
-  return axios.patch(`${ROUNDS_URL}/${tournament.id}?gameId=635792e04c66d1478c1a2eb4`, { ...tournament });
+  let payload = {...tournament};
+
+  delete(payload.id);
+  delete(payload.gameId);
+  return axios.patch(`${ROUNDS_URL}/${tournament.id}?gameId=635792e04c66d1478c1a2eb4`, payload);
 }
 
 // UPDATE Status

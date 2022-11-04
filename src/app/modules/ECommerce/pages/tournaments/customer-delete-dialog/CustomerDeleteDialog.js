@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { Modal } from "react-bootstrap";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import {ModalProgressBar} from "../../../../../../_metronic/_partials/controls";
-import * as actions from "../../../_redux/customers/customersActions";
+import * as actions from "../../../_redux/tournaments/customersActions";
 import {useCustomersUIContext} from "../CustomersUIContext";
 
 export function CustomerDeleteDialog({ id, show, onHide }) {
@@ -56,14 +56,14 @@ export function CustomerDeleteDialog({ id, show, onHide }) {
       {/*end::Loading*/}
       <Modal.Header closeButton>
         <Modal.Title id="example-modal-sizes-title-lg">
-          User Delete
+          Round Delete
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {!isLoading && (
-          <span>Are you sure to permanently delete this user?</span>
+          <span>Are you sure to permanently delete this round?</span>
         )}
-        {isLoading && <span>User is deleting...</span>}
+        {isLoading && <span>Round is deleting...</span>}
       </Modal.Body>
       <Modal.Footer>
         <div>

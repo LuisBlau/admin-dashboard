@@ -18,7 +18,7 @@ export function CustomerEditDialogHeader({ id }) {
   useEffect(() => {    
     let _title = id ? "" : "New Tournament";
     if (customerForEdit && id) {
-      _title = `Edit tournament '${customerForEdit.name}'`;
+      _title = `Edit tournament '${customerForEdit.roundId}'`;
     }
 
     setTitle(_title);
