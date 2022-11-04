@@ -17,10 +17,11 @@ import {
 const CustomerEditSchema = Yup.object().shape({
   name: Yup.string()
     .required("Display Name is required"),
-  // password: Yup.string()
-  //   .min(3, "Minimum 3 symbols")
-  //   .max(50, "Maximum 50 symbols")
-  //   .required("Password is required"),
+  password: Yup.string()
+    // .min(8, "Minimum 8 symbols")
+    // .max(50, "Maximum 50 symbols")
+    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})/, "Password must contain 8 Characters and at least 1 letter, 1 number")
+    .required("Password is required"),
   email: Yup.string()
     .email("Invalid email")
     .required("Email is required"),  
@@ -65,6 +66,14 @@ export function CustomerEditForm({
                       component={Input}
                       placeholder="Enter your email."
                       label="Email"
+                    />
+
+                    <Field
+                      name="password"
+                      component={Input}
+                      type="password"
+                      placeholder="Enter password."
+                      label="Password"
                     />
                 
                   </div>

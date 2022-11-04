@@ -17,7 +17,7 @@ export function createCustomer(customer) {
 
 // READ
 export function getAllCustomers() {  
-  return axios.get(`${CUSTOMERS_URL}?role=user`);
+  return axios.get(`${CUSTOMERS_URL}?role=user&limit=100`);
 }
 
 export function getCustomerById(customerId) {

@@ -18,9 +18,14 @@ const CustomerEditSchema = Yup.object().shape({
   name: Yup.string()
     .required("Display Name is required"),
   password: Yup.string()
-    .min(3, "Minimum 3 symbols")
-    .max(50, "Maximum 50 symbols")
+    // .min(8, "Minimum 8 symbols")
+    // .max(50, "Maximum 50 symbols")
+    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})/, "Password must contain 8 Characters and at least 1 letter, 1 number")
     .required("Password is required"),
+
+  // passwordConfirmation: Yup.string()
+  // .oneOf([Yup.ref('password'), null], 'Passwords must match')
+
   // customUrl: Yup.string(),
   //   // .min(3, "Minimum 3 symbols")
   //   // .max(50, "Maximum 50 symbols")
