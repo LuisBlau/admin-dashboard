@@ -34,6 +34,7 @@ export function updateRound(tournament) {
 
   delete(payload.id);
   delete(payload.gameId);
+  delete(payload.roundId);
   return axios.patch(`${ROUNDS_URL}/${tournament.id}?gameId=635792e04c66d1478c1a2eb4`, payload);
 }
 

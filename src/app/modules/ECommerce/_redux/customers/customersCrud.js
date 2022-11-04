@@ -13,6 +13,7 @@ export function createCustomer(customer) {
   delete(payload.role);
   delete(payload.isEmailVerified);
   delete(payload.provider);
+  delete(payload.stripeCustomer);
   return axios.post(CUSTOMERS_URL, payload);
 }
 
@@ -40,6 +41,7 @@ export function updateCustomer(customer) {
   delete(payload.role);
   delete(payload.isEmailVerified);
   delete(payload.provider);
+  delete(payload.stripeCustomer);
   return axios.patch(`${CUSTOMERS_URL}/${customer.id}`, payload);
 }
 

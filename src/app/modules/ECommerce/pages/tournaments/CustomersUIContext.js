@@ -29,15 +29,18 @@ export function CustomersUIProvider({customersUIEvents, children}) {
 
   const initCustomer = {
     id: undefined,
-    name: "",    
-    customUrl: "",
-    email: "",
-    bio: "",
-    facebookUname: "",
-    twitterUname: "",
-    discordUname: "",
-    waddress: "",
-    // coverImage: "",
+    roundId: undefined,
+    startTime: 1,
+    entryPeriod: 1,
+    minPlayers: 1,
+    maxPlayers: 1,
+    playPeriod: 1,
+    finalPeriod: 1,
+    entryAmount: 1,
+    adminFeeRate: 0,
+    roundFeeRate: 0,
+    distributed: false,
+    locked: false
   };
 
   const value = {
