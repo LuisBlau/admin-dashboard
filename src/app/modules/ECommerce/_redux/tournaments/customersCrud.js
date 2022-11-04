@@ -6,10 +6,21 @@ export const ROUNDS_URL = ABU + "/rounds";
 
 // CREATE =>  POST: add a new customer to the server
 export function createRound(tournament) {
-  let payload = {...tournament};
+  let payload = {
+    roundId: Number(tournament.roundId),
+    startTime: Number(tournament.startTime),
+    entryPeriod: Number(tournament.entryPeriod),
+    minPlayers: Number(tournament.minPlayers),
+    maxPlayers: Number(tournament.maxPlayers),
+    playPeriod: Number(tournament.playPeriod),
+    finalPeriod: Number(tournament.finalPeriod),
+    entryAmount: Number(tournament.entryAmount),
+    adminFeeRate: Number(tournament.adminFeeRate),
+    roundFeeRate: Number(tournament.roundFeeRate),
+    distributed: (tournament.distributed.toString().toLowerCase() === "true" ? true : false),
+    locked: (tournament.locked.toString().toLowerCase() === "true" ? true : false)
+  };
 
-  delete(payload.id);
-  delete(payload.gameId);
   return axios.post(`${ROUNDS_URL}?gameId=635792e04c66d1478c1a2eb4`, payload);
 }
 
@@ -30,11 +41,20 @@ export function findCustomers(queryParams) {
 
 // UPDATE => patch: update the customer on the server
 export function updateRound(tournament) {
-  let payload = {...tournament};
-
-  delete(payload.id);
-  delete(payload.gameId);
-  delete(payload.roundId);
+  let payload = {
+    // roundId: Number(tournament.roundId),
+    startTime: Number(tournament.startTime),
+    entryPeriod: Number(tournament.entryPeriod),
+    minPlayers: Number(tournament.minPlayers),
+    maxPlayers: Number(tournament.maxPlayers),
+    playPeriod: Number(tournament.playPeriod),
+    finalPeriod: Number(tournament.finalPeriod),
+    entryAmount: Number(tournament.entryAmount),
+    adminFeeRate: Number(tournament.adminFeeRate),
+    roundFeeRate: Number(tournament.roundFeeRate),
+    distributed: (tournament.distributed.toString().toLowerCase() === "true" ? true : false),
+    locked: (tournament.locked.toString().toLowerCase() === "true" ? true : false)
+  };
   return axios.patch(`${ROUNDS_URL}/${tournament.id}?gameId=635792e04c66d1478c1a2eb4`, payload);
 }
 

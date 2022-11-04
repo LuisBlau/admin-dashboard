@@ -32,6 +32,7 @@ export function CustomersUIProvider({customersUIEvents, children}) {
     name: "",    
     email: "",
     password: "",
+    role: "user"
   };
 
   const value = {
