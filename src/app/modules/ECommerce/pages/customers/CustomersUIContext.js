@@ -30,13 +30,13 @@ export function CustomersUIProvider({customersUIEvents, children}) {
   const initCustomer = {
     id: undefined,
     name: "",    
-    customUrl: "",
+    // customUrl: "",
     email: "",
-    bio: "",
-    facebookUname: "",
-    twitterUname: "",
-    discordUname: "",
-    waddress: "",
+    // bio: "",
+    // facebookUname: "",
+    // twitterUname: "",
+    // discordUname: "",
+    // waddress: "",
     // coverImage: "",
   };
 

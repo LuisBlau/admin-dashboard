@@ -17,22 +17,22 @@ import {
 const CustomerEditSchema = Yup.object().shape({
   name: Yup.string(),
     // .required("Display Name is required"),
-  customUrl: Yup.string(),
-    // .min(3, "Minimum 3 symbols")
-    // .max(50, "Maximum 50 symbols")
-    // .required("Custom URL is required"),
+  // customUrl: Yup.string(),
+  //   // .min(3, "Minimum 3 symbols")
+  //   // .max(50, "Maximum 50 symbols")
+  //   // .required("Custom URL is required"),
   email: Yup.string()
     .email("Invalid email"),
     // .required("Email is required"),
-  bio: Yup.string(),
-    // .required("Bio is required"),
-  facebookUname: Yup.string(), 
-    // .required("Facebook Name is required"),
-  twitterUname: Yup.string(),
-    // .required("Twitter Name is required"),
-  discordUname: Yup.string(),
-    // .required("Discord Name is required"), 
-  // waddress: Yup.string(),
+  // bio: Yup.string(),
+  //   // .required("Bio is required"),
+  // facebookUname: Yup.string(), 
+  //   // .required("Facebook Name is required"),
+  // twitterUname: Yup.string(),
+  //   // .required("Twitter Name is required"),
+  // discordUname: Yup.string(),
+  //   // .required("Discord Name is required"), 
+  // // waddress: Yup.string(),
 });
 
 export function CustomerEditForm({
@@ -69,12 +69,12 @@ export function CustomerEditForm({
                       label="Display Name"
                     />
 
-                    <Field
+                    {/* <Field
                       name="customUrl"
                       component={Input}
                       placeholder="Axies Trista Francis.com/"
                       label="Custom URL"
-                    />
+                    /> */}
 
                     <Field
                       name="email"
@@ -83,43 +83,43 @@ export function CustomerEditForm({
                       label="Email"
                     />
                     
-                    <label>Enter Bio</label>
+                    {/* <label>Enter Bio</label>
                     <Field
                       name="bio"
                       component="textarea"
                       className="form-control"
                       placeholder="Enter your Bio."
                     />
-                    <div className="feedback">Please enter <b>Bio</b></div>
+                    <div className="feedback">Please enter <b>Bio</b></div> */}
                 
                   </div>
                   <div className="col-lg-6">
-                    <Field
+                    {/* <Field
                       name="facebookUname"
                       component={Input}
                       placeholder="Facebook Username"
                       label="Facebook"
-                    />
+                    /> */}
 
-                    <Field
+                    {/* <Field
                       name="twitterUname"
                       component={Input}
                       placeholder="Twitter Username"
                       label="Twitter username"
-                    />
+                    /> */}
 
-                    <Field
+                    {/* <Field
                       name="discordUname"
                       component={Input}
                       placeholder="Discord username"
                       label="Discord"
-                    />
-                    <Field
+                    /> */}
+                    {/* <Field
                       name="waddress"
                       component={Input}
                       placeholder="Wallet address"
                       label="Wallet address"
-                    />
+                    /> */}
                   </div>
                 </div>
               </Form>
