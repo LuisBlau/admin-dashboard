@@ -13,7 +13,7 @@ export function AuthPage() {
       <>
         <div className="d-flex flex-column flex-root">
           {/*begin::Login*/}
-          <div className="overlay"></div>
+          <div className="overlay-bg"></div>
           <div
               className="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-row-fluid"
               id="kt_login"
