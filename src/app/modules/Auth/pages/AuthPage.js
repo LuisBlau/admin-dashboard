@@ -13,8 +13,9 @@ export function AuthPage() {
       <>
         <div className="d-flex flex-column flex-root">
           {/*begin::Login*/}
+          <div className="overlay"></div>
           <div
-              className="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-row-fluid bg-white"
+              className="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-row-fluid"
               id="kt_login"
           >
             
@@ -22,10 +23,10 @@ export function AuthPage() {
             {/*begin::Content*/}
             <div className="flex-row-fluid d-flex flex-column position-relative p-7 overflow-hidden">
               {/*begin::Content header*/}
-              <div className="position-absolute top-0 right-0 text-right mt-5 mb-15 mb-lg-0 flex-column-auto justify-content-center py-5 px-10">
+              {/* <div className="position-absolute top-0 right-0 text-right mt-5 mb-15 mb-lg-0 flex-column-auto justify-content-center py-5 px-10">
                 <span className="font-weight-bold text-dark-50">Don't have an account yet?</span>
                 <Link to="/auth/registration" className="font-weight-bold ml-2" id="kt_login_signup">Sign Up!</Link>
-              </div>
+              </div> */}
               {/*end::Content header*/}
 
               {/* begin::Content body */}
@@ -45,13 +46,13 @@ export function AuthPage() {
 
               {/* begin::Mobile footer */}
               <div
-                  className="d-flex flex-column-auto flex-column flex-sm-row justify-content-between align-items-center mt-5 p-5">
-                <div className="text-dark-50 font-weight-bold order-2 order-sm-1 my-2">
+                  className="d-flex flex-column-auto flex-column flex-sm-row justify-content-between align-items-center mt-5 p-5 text-white">
+                <div className="font-weight-bold order-2 order-sm-1 my-2">
                   @2022 PlayEstates
                 </div>
                 <div className="d-flex order-1 order-sm-2 my-2">
-                  <a href="https://assets.website-files.com/6283e0c1ca1bf2bfc6ec78ef/628663ff6223897447e96dc3_Privacy.53f1691166511f7a5330.pdf" className="text-dark-75 text-hover-primary policy" target="_blank" title="Flaticon, The largest database of free vector icons">Privacy Policy</a>
-                  <a href="https://assets.website-files.com/6283e0c1ca1bf2bfc6ec78ef/62866402eaf69658bdd6cd72_Terms.0b17329edc888f77e895.pdf" className="text-dark-75 text-hover-primary" target="_blank" title="Flaticon, The largest database of free vector icons">Terms of services</a>
+                  <a href="https://assets.website-files.com/6283e0c1ca1bf2bfc6ec78ef/628663ff6223897447e96dc3_Privacy.53f1691166511f7a5330.pdf" className="text-white text-hover-primary policy" target="_blank" title="Flaticon, The largest database of free vector icons">Privacy Policy</a>
+                  <a href="https://assets.website-files.com/6283e0c1ca1bf2bfc6ec78ef/62866402eaf69658bdd6cd72_Terms.0b17329edc888f77e895.pdf" className="text-white text-hover-primary" target="_blank" title="Flaticon, The largest database of free vector icons">Terms of services</a>
                 </div>
               </div>
               {/* end::Mobile footer */}
