@@ -28,7 +28,7 @@ export function CustomersFetchDialog({ show, onHide }) {
   const { customers } = useSelector(
     (state) => ({
       customers: selectedCustomers(
-        state.customers.entities,
+        state.rounds.entities,
         customersUIProps.ids
       ),
     }),

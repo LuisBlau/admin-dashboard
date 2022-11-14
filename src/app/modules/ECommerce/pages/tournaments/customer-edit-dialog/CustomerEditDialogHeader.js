@@ -7,8 +7,8 @@ export function CustomerEditDialogHeader({ id }) {
   // Customers Redux state
   const { customerForEdit, actionsLoading } = useSelector(
     (state) => ({
-      customerForEdit: state.customers.customerForEdit,
-      actionsLoading: state.customers.actionsLoading,
+      customerForEdit: state.rounds.customerForEdit,
+      actionsLoading: state.rounds.actionsLoading,
     }),
     shallowEqual
   );

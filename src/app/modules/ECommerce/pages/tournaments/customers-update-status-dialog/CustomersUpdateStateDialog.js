@@ -31,10 +31,10 @@ export function CustomersUpdateStateDialog({ show, onHide }) {
   const { customers, isLoading } = useSelector(
     (state) => ({
       customers: selectedCustomers(
-        state.customers.entities,
+        state.rounds.entities,
         customersUIProps.ids
       ),
-      isLoading: state.customers.actionsLoading,
+      isLoading: state.rounds.actionsLoading,
     }),
     shallowEqual
   );

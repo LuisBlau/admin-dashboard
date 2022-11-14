@@ -19,8 +19,8 @@ export function CustomerEditDialog({ id, show, onHide }) {
   const dispatch = useDispatch();
   const { actionsLoading, customerForEdit } = useSelector(
     (state) => ({
-      actionsLoading: state.customers.actionsLoading,
-      customerForEdit: state.customers.customerForEdit,
+      actionsLoading: state.rounds.actionsLoading,
+      customerForEdit: state.rounds.customerForEdit,
     }),
     shallowEqual
   );
@@ -31,7 +31,7 @@ export function CustomerEditDialog({ id, show, onHide }) {
   }, [id, dispatch]);
 
   // server request for saving customer
-  const saveCustomer = (customer) => {  
+  const saveCustomer = (customer) => {
     if (!id) {
       // server request for creating customer
       dispatch(actions.createCustomer(customer)).then(() => onHide());

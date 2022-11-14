@@ -2,6 +2,7 @@
 // DOCS: https://react-bootstrap-table.github.io/react-bootstrap-table2/docs/
 // STORYBOOK: https://react-bootstrap-table.github.io/react-bootstrap-table2/storybook/index.html
 import React, { useEffect, useMemo } from "react";
+import { format, formatDistance, formatRelative, subDays } from 'date-fns';
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory, {
   PaginationProvider,
@@ -43,7 +44,7 @@ export function CustomersTable() {
     };
   }, [customersUIContext]);
 
-  // Getting curret state of customers list from store (Redux)  
+  // Getting curret state of customers list from store (Redux)
   const { currentState } = useSelector(
     (state) => ({ currentState: state.rounds }),
     shallowEqual
@@ -55,8 +56,8 @@ export function CustomersTable() {
   useEffect(() => {
     // clear selections list
     customersUIProps.setIds([]);
-    // server call by queryParams    
-    dispatch(actions.fetchCustomers(customersUIProps.queryParams));    
+    // server call by queryParams
+    dispatch(actions.fetchCustomers(customersUIProps.queryParams));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customersUIProps.queryParams, dispatch]);
   // Table columns
@@ -73,6 +74,7 @@ export function CustomersTable() {
       dataField: "startTime",
       text: "Start Time",
       sort: true,
+      formatter: (cell, row) => format(Number(row.startTime) * 1000, "yyyy-MM-dd HH:mm:ss"),
       sortCaret: sortCaret,
       headerSortingClasses,
     },

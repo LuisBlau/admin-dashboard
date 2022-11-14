@@ -19,7 +19,7 @@ export function CustomersDeleteDialog({ show, onHide }) {
   // Customers Redux state
   const dispatch = useDispatch();
   const { isLoading } = useSelector(
-    (state) => ({ isLoading: state.customers.actionsLoading }),
+    (state) => ({ isLoading: state.rounds.actionsLoading }),
     shallowEqual
   );
 

@@ -3,6 +3,7 @@
 // Please, be familiar with article first:
 // https://hackernoon.com/react-form-validation-with-formik-and-yup-8b76bda62e10
 import React from "react";
+import { format } from 'date-fns';
 import { Modal } from "react-bootstrap";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -20,10 +21,8 @@ const CustomerEditSchema = Yup.object().shape({
     .required()
     .positive()
     .integer(),
-  startTime: Yup.number()
-    .required()
-    .positive()
-    .integer(),
+  startTimeFormat: Yup.string()
+    .required(),
   entryPeriod: Yup.string().required(),
     // .required("Email is required"),
   minPlayers: Yup.number()
@@ -38,9 +37,7 @@ const CustomerEditSchema = Yup.object().shape({
   finalPeriod: Yup.string().required(),
   entryAmount: Yup.number().required().integer(),
   adminFeeRate: Yup.number().required(),
-  roundFeeRate: Yup.number().required(),
-  distributed: Yup.bool().required(),
-  locked: Yup.bool().required(),
+  roundFeeRate: Yup.number().required()
 });
 
 export function CustomerEditForm({
@@ -49,17 +46,26 @@ export function CustomerEditForm({
   actionsLoading,
   onHide,
 }) {
+  const [distributed, setDistributed] = React.useState(false);
+  const [locked, setLocked] = React.useState(false);
+  React.useEffect(()=>{
+    setDistributed(customer.distributed);
+    setLocked(customer.locked);
+  }, [customer]);
   return (
     <>
       <Formik
         enableReinitialize={true}
-        initialValues={customer}
+        initialValues={{...customer, startTimeFormat: format(Number(customer.startTime) * 1000, 'yyyy-MM-dd HH:mm:ss')}}
         validationSchema={CustomerEditSchema}
         onSubmit={(values) => {
+          values.startTime = new Date(values.startTimeFormat).getTime() / 1000;
+          values.locked = locked;
+          values.distributed = distributed;
           saveCustomer(values);
         }}
       >
-        {({ handleSubmit }) => (          
+        {({ handleSubmit }) => (
           <>
             <Modal.Body className="overlay overlay-block cursor-default">
               {actionsLoading && (
@@ -70,7 +76,7 @@ export function CustomerEditForm({
               <Form className="form form-label-right">
                 <div className="form-group row">
                   <div className="col-lg-6">
-                    {/* {!customer.roundId && 
+                    {/* {!customer.roundId &&
                       (<Field
                         name="roundId"
                         component={Input}
@@ -84,8 +90,9 @@ export function CustomerEditForm({
                       label="Round ID"
                     />
                     <Field
-                      name="startTime"
+                      name="startTimeFormat"
                       component={Input}
+                      type="datetime-local"
                       placeholder="Enter Start time"
                       label="Start time"
                     />
@@ -141,16 +148,50 @@ export function CustomerEditForm({
                     />
                     <Field
                       name="distributed"
-                      component={Input}
-                      type="text"
-                      label="Distributed"
-                    />
+                    >
+                      {({
+                        field, // { name, value, onChange, onBlur }
+                        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                        meta,
+                      }) => (
+                        <div>
+                          <span>
+                            Distributed
+                          </span>
+                          <label className="toggle">
+                            <input type="checkbox" name={field.name} checked={distributed}
+                              onChange={(evt) => {
+                                setDistributed(evt.target.checked);
+                              }}
+                            />
+                            <span className="toggle-slider round"></span>
+                          </label>
+                        </div>
+                      )}
+                    </Field>
                     <Field
                       name="locked"
-                      component={Input}
-                      type="text"
-                      label="Locked"
-                    />
+                    >
+                      {({
+                        field, // { name, value, onChange, onBlur }
+                        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                        meta,
+                      }) => (
+                        <div>
+                          <span>
+                            Locked
+                          </span>
+                          <label className="toggle">
+                            <input type="checkbox" name={field.name} checked={locked}
+                              onChange={(evt) => {
+                                setLocked(evt.target.checked);
+                              }}
+                            />
+                            <span className="toggle-slider round"></span>
+                          </label>
+                        </div>
+                      )}
+                    </Field>
                   </div>
                 </div>
               </Form>
