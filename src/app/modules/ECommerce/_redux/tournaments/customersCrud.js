@@ -20,6 +20,24 @@ export function createRound(tournament) {
     distributed: (tournament.distributed.toString().toLowerCase() === "true" ? true : false),
     locked: (tournament.locked.toString().toLowerCase() === "true" ? true : false)
   };
+  if (tournament.entryPeriodUnit === 'minutes') {
+    tournament.entryPeriod *= 60;
+  }
+  else if (tournament.entryPeriodUnit === 'hours') {
+    tournament.entryPeriod *= 3600;
+  }
+  if (tournament.playPeriodUnit === 'minutes') {
+    tournament.playPeriod *= 60;
+  }
+  else if (tournament.playPeriodUnit === 'hours') {
+    tournament.playPeriod *= 3600;
+  }
+  if (tournament.finalPeriodUnit === 'minutes') {
+    tournament.finalPeriod *= 60;
+  }
+  else if (tournament.finalPeriodUnit === 'hours') {
+    tournament.finalPeriod *= 3600;
+  }
 
   return axios.post(`${ROUNDS_URL}?gameId=635792e04c66d1478c1a2eb4`, payload);
 }
@@ -55,6 +73,24 @@ export function updateRound(tournament) {
     distributed: (tournament.distributed.toString().toLowerCase() === "true" ? true : false),
     locked: (tournament.locked.toString().toLowerCase() === "true" ? true : false)
   };
+  if (tournament.entryPeriodUnit === 'minutes') {
+    tournament.entryPeriod *= 60;
+  }
+  else if (tournament.entryPeriodUnit === 'hours') {
+    tournament.entryPeriod *= 3600;
+  }
+  if (tournament.playPeriodUnit === 'minutes') {
+    tournament.playPeriod *= 60;
+  }
+  else if (tournament.playPeriodUnit === 'hours') {
+    tournament.playPeriod *= 3600;
+  }
+  if (tournament.finalPeriodUnit === 'minutes') {
+    tournament.finalPeriod *= 60;
+  }
+  else if (tournament.finalPeriodUnit === 'hours') {
+    tournament.finalPeriod *= 3600;
+  }
   return axios.patch(`${ROUNDS_URL}/${tournament.roundId}?gameId=635792e04c66d1478c1a2eb4`, payload);
 }
 

@@ -12,8 +12,23 @@ import {
   Select,
   Checkbox,
   DatePickerField,
+  FieldFeedbackLabel
 } from "../../../../../../_metronic/_partials/controls";
 
+const UNITS = ['seconds', 'minutes', 'hours'];
+
+const getFieldCSSClasses = (touched, errors) => {
+  const classes = ["form-control"];
+  if (touched && errors) {
+    classes.push("is-invalid");
+  }
+
+  if (touched && !errors) {
+    classes.push("is-valid");
+  }
+
+  return classes.join(" ");
+};
 
 // Validation schema
 const CustomerEditSchema = Yup.object().shape({
@@ -48,20 +63,36 @@ export function CustomerEditForm({
 }) {
   const [distributed, setDistributed] = React.useState(false);
   const [locked, setLocked] = React.useState(false);
+  // const [entryPeriod, setEntryPeriod] = React.useState(0);
+  const [entryPeriodUnit, setEntryPeriodUnit] = React.useState(UNITS[0]);
+  const [playPeriodUnit, setPlayPeriodUnit] = React.useState(UNITS[0]);
+  const [finalPeriodUnit, setFinalPeriodUnit] = React.useState(UNITS[0]);
   React.useEffect(()=>{
     setDistributed(customer.distributed);
     setLocked(customer.locked);
+    // setEntryPeriod(customer.entryPeriod);
   }, [customer]);
+
   return (
     <>
       <Formik
         enableReinitialize={true}
-        initialValues={{...customer, startTimeFormat: format(Number(customer.startTime) * 1000, 'yyyy-MM-dd HH:mm:ss')}}
+        initialValues={{
+          ...customer,
+          startTimeFormat: format(Number(customer.startTime) * 1000,
+          'yyyy-MM-dd HH:mm:ss'),
+          entryPeriodUnit: UNITS[0],
+          playPeriodUnit: UNITS[0],
+          finalPeriodUnit: UNITS[0]
+        }}
         validationSchema={CustomerEditSchema}
         onSubmit={(values) => {
           values.startTime = new Date(values.startTimeFormat).getTime() / 1000;
           values.locked = locked;
           values.distributed = distributed;
+          values.entryPeriodUnit = entryPeriodUnit;
+          values.playPeriodUnit = playPeriodUnit;
+          values.finalPeriodUnit = finalPeriodUnit;
           saveCustomer(values);
         }}
       >
@@ -98,22 +129,118 @@ export function CustomerEditForm({
                     />
                     <Field
                       name="entryPeriod"
-                      component={Input}
-                      placeholder="Enter Entry Period"
-                      label="Entry Period"
-                    />
+                    >
+                      {({
+                        field, // { name, value, onChange, onBlur }
+                        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                        meta,
+                        customFeedbackLabel
+                      }) => (
+                        <>
+                          <label style={{display: "block"}}>Enter Entry Period</label>
+                          <input
+                            className={getFieldCSSClasses(touched[field.name], errors[field.name])}
+                            placeholder="Enter Entry Period"
+                            {...field}
+                            // {...props}
+                            style={{display: "inline", width: "70%"}}
+                          />
+                          <select
+                            name="entryPeriodUnit"
+                            value={entryPeriodUnit}
+                            onChange={(event) => {setEntryPeriodUnit(event.target.value)}}
+                            className="form-control"
+                            style={{display: "inline", width: "30%"}}
+                          >
+                            {UNITS.map((unit, index) => (
+                              <option key={index} value={unit}>{unit}</option>
+                            ))}
+                          </select>
+                          <FieldFeedbackLabel
+                            error={errors[field.name]}
+                            touched={touched[field.name]}
+                            label="Entry Period"
+                            customFeedbackLabel={customFeedbackLabel}
+                          />
+                        </>
+                      )}
+                    </Field>
                     <Field
                       name="playPeriod"
-                      component={Input}
-                      placeholder="Enter Play Period"
-                      label="Play Period"
-                    />
+                    >
+                      {({
+                        field, // { name, value, onChange, onBlur }
+                        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                        meta,
+                        customFeedbackLabel
+                      }) => (
+                        <>
+                          <label style={{display: "block"}}>Enter Play Period</label>
+                          <input
+                            className={getFieldCSSClasses(touched[field.name], errors[field.name])}
+                            placeholder="Enter Play Period"
+                            {...field}
+                            // {...props}
+                            style={{display: "inline", width: "70%"}}
+                          />
+                          <select
+                            name="playPeriodUnit"
+                            value={playPeriodUnit}
+                            onChange={(event) => {setPlayPeriodUnit(event.target.value)}}
+                            className="form-control"
+                            style={{display: "inline", width: "30%"}}
+                          >
+                            {UNITS.map((unit, index) => (
+                              <option key={index} value={unit}>{unit}</option>
+                            ))}
+                          </select>
+                          <FieldFeedbackLabel
+                            error={errors[field.name]}
+                            touched={touched[field.name]}
+                            label="Play Period"
+                            customFeedbackLabel={customFeedbackLabel}
+                          />
+                        </>
+                      )}
+                    </Field>
                     <Field
                       name="finalPeriod"
-                      component={Input}
-                      placeholder="Enter Final Period"
-                      label="Final Period"
-                    />
+                    >
+                      {({
+                        field, // { name, value, onChange, onBlur }
+                        form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+                        meta,
+                        customFeedbackLabel
+                      }) => (
+                        <>
+                          <label style={{display: "block"}}>Enter Final Period</label>
+                          <input
+                            className={getFieldCSSClasses(touched[field.name], errors[field.name])}
+                            placeholder="Enter Final Period"
+                            {...field}
+                            // {...props}
+                            style={{display: "inline", width: "70%"}}
+                          />
+                          <select
+                            name="finalPeriodUnit"
+                            value={finalPeriodUnit}
+                            onChange={(event) => {setFinalPeriodUnit(event.target.value)}}
+                            className="form-control"
+                            style={{display: "inline", width: "30%"}}
+                          >
+                            {UNITS.map((unit, index) => (
+                              <option key={index} value={unit}>{unit}</option>
+                            ))}
+                          </select>
+                          <FieldFeedbackLabel
+                            error={errors[field.name]}
+                            touched={touched[field.name]}
+                            label="Final Period"
+                            customFeedbackLabel={customFeedbackLabel}
+                          />
+                        </>
+                      )}
+                    </Field>
                     <Field
                       name="minPlayers"
                       component={Input}
