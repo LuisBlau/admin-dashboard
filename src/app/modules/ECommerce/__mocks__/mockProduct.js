@@ -144,7 +144,7 @@ export default function mockProducts(mock) {
   }];
   });
 
-  mock.onGet("https://game-engine-backend-api.herokuapp.com/v1/steams/leader-board?gameId=635792e04c66d1478c1a2eb4&roundId=6&limit=100").reply(config => {
+  mock.onGet("https://api.playestates.com/v1/steams/leader-board?gameId=635792e04c66d1478c1a2eb4&roundId=6&limit=100").reply(config => {
     return [200, [
       {
           "_id": "636231cb392e0e002107e2a9",

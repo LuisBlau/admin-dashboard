@@ -33,7 +33,7 @@ export default function mockUsers(mock) {
     return [200, { user: newUser }];
   });
 
-  mock.onGet("https://game-engine-backend-api.herokuapp.com/v1/users?role=admin&limit=100").reply(config => {
+  mock.onGet("https://api.playestates.com/v1/users?role=admin&limit=100").reply(config => {
     // const mockUtils = new MockUtils();
     // const { queryParams } = JSON.parse(config.data);
     // const filterdUsers = mockUtils.baseFilter(
@@ -233,7 +233,7 @@ export default function mockUsers(mock) {
   }];
   });
 
-  mock.onGet("https://game-engine-backend-api.herokuapp.com/v1/users?role=user&limit=100").reply(config => {
+  mock.onGet("https://api.playestates.com/v1/users?role=user&limit=100").reply(config => {
     // const mockUtils = new MockUtils();
     // const { queryParams } = JSON.parse(config.data);
     // const filterdUsers = mockUtils.baseFilter(

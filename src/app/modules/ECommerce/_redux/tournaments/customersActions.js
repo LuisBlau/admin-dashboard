@@ -9,7 +9,7 @@ export const fetchCustomers = queryParams => dispatch => {
   // alert('fetchs')
   dispatch(actions.startCall({ callType: callTypes.list }));
   
-//   fetch("https://game-engine-backend-api.herokuapp.com/v1/rounds?gameId=635792e04c66d1478c1a2eb4&limit=10&page=0&sortBy=roundId:desc")
+//   fetch("https://api.playestates.com/v1/rounds?gameId=635792e04c66d1478c1a2eb4&limit=10&page=0&sortBy=roundId:desc")
 //   .then(res => res.json())
 //   .then(
 //     (result) => {
